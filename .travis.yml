@@ -15,7 +15,7 @@ env:
 
 # command to install dependencies
 install:
-  - pip install -r requirements.txt --use-mirrors
+#  - pip install -r requirements.txt --use-mirrors
 
 before_script:
 # - psql -c 'create database mysitedb;' -U postgres
