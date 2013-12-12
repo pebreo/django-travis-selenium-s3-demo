@@ -1,34 +1,21 @@
 language: python
-
 python:
-  - "2.7"
-
+- '2.7'
 env:
+  matrix:
+  - DB=sqlite DJANGO_VERSION=1.5.5
   global:
-    - ARTIFACTS_AWS_REGION=us-east-1
-    - ARTIFACTS_S3_BUCKET=pebb
-
-env:
-  - DB=sqlite DJANGO_VERSION=1.5.5 
-
-# command to install dependencies
+  - secure: RyJ1Pmh7k3uPmuPKghBeOLRjUMuEw5iKJzOkDVQYUHlxUnogZoGS2XgdEFACLR4t0DRvf5Lyg26L1HsmTlmLb7jcqf8AEGzwEJSp3wozwDRKWZCRsU7vT4DIU0lBEvYWvlJodA1t7lSWA12tTMBrflrJs0FOfV90hu1T8ppjvkk=
+  - secure: A/dGeU7L3JCf8yjhMQpOI82MDXZFhg7x176Z8/TxZHveaY1BMpGMuftWlDEzsdRbsnlyzgLsbJ3nYKMbizlib08LABVoGYZ3YBwy/on/mbOo8eZgyE9eEiYmpIvGcJstRt0ZctUvUP2Qtp3BN3VTn6IoH1I2ZGr0K+z+xzYJ4B4=
+  - secure: WABlihR6357k6sjyILX2XCfr4qqjKrIctv6O8BvRd03vyLPjBbFJGzmeXKmi+Dw87HY1orAYTRGWQ+1MpF1ADB/RxTC9DccpsgLx66aXz/vV1hmhGriZDOhJbBz4WmdXAvpB91alN5WiRS+mWM4NitFSwu1JdsetpGjZYehcEMU=
 install:
-  - pip install -r requirements.txt --use-mirrors
-
+- pip install -r requirements.txt --use-mirrors
 before_script:
-# - psql -c 'create database mysitedb;' -U postgres
-  - gem install travis-artifacts
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - python manage.py runserver &
-  
-# command to run tests
+- gem install travis-artifacts
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- python manage.py runserver &
 script: python manage.py test polls --liveserver=localhost:8081
-
-#after_script:
-#  - travis-artifacts upload --path hello.txt --target-path .
-
 after_success:
-#  - travis-artifacts upload --path *.png --target-path test
-  - travis-artifacts upload --path vote-result.png
-  - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
+- travis-artifacts upload --path vote-result.png
+- echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
