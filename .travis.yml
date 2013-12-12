@@ -15,7 +15,7 @@ before_script:
 #- python manage.py runserver &
  - echo foobar > foobar.txt
 #script: python manage.py test polls --liveserver=localhost:8081
-script: echo foobar.txt
+script: cat foobar.txt
 after_success:
 - travis-artifacts upload --path foobar.txt
 - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
