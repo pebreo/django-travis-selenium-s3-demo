@@ -1,0 +1,33 @@
+language: python
+
+python:
+  - "2.7"
+
+env:
+  global:
+    - ARTIFACTS_AWS_REGION=us-east-1
+    - ARTIFACTS_S3_BUCKET=pebb
+    - secure: YOLiy0c68X43MSrxlEsz2r3guZy/7D2MwpJaffPCN8Lrp8zgrVi8EU320mkn9QfK7WxSjXz996XcCIjQQCMb9HgrWEOQkZBCIJ1ABm87GLqDC9XLFgt7YrLl3chlli9PIRmt42eYTqiEeZt1nXwkgUMZ4VVHzZbCGR3g207cKlc=
+    - secure: NT3j9ng3lW+Cpc5BZIcnIERF1d5fHlKRIhPzMqH32eVXc5YgdnPoX46EtAVFvzRyEIHzgDKrkXvhHhnf4CUNVP5RBKRK9i88PQahY3EgyFe33785LvK4BD4qGD6LqZa1ZfQsQppGHFP5WrRFxy2pJKFsMCTn9KMFRN2B5mGoFg8=
+
+env:
+  - DB=sqlite DJANGO_VERSION=1.5.5 
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt --use-mirrors
+
+before_script:
+# - psql -c 'create database mysitedb;' -U postgres
+  - gem install travis-artifacts
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+#  - python manage.py syncdb
+  
+# command to run tests
+script: python manage.py test polls --liveserver=localhost:8081
+
+after_script:
+#  - travis-artifacts upload --path hello.txt --target-path .
+  - travis-artifacts upload --path *.png --target-path test
+  - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}

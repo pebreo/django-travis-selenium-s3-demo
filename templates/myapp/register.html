@@ -1,0 +1,11 @@
+<html>
+    
+    <form id="registration_form" method="POST" action="/myapp/register">
+
+            {% csrf_token %}
+            {{user_form.as_p}}
+
+            {{profile_form.as_p}}
+            <input type="submit" name="submit" value="Submit Form" />
+    </form>
+</html>
