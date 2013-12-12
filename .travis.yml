@@ -23,6 +23,7 @@ before_script:
   - gem install travis-artifacts
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+  - echo foo > foo.txt
   - python manage.py runserver &
   
 # command to run tests
@@ -33,5 +34,5 @@ script: python manage.py test polls --liveserver=localhost:8081
 
 after_success:
 #  - travis-artifacts upload --path *.png --target-path test
-  - travis-artifacts upload --path vote-result.png
+  - travis-artifacts upload --path foo.txt
   - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
