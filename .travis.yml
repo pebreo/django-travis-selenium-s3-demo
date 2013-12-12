@@ -22,7 +22,7 @@ before_script:
   - gem install travis-artifacts
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-#  - python manage.py syncdb
+  - python manage.py runserver &
   
 # command to run tests
 script: python manage.py test polls --liveserver=localhost:8081
