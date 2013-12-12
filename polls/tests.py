@@ -71,7 +71,7 @@ class AdminTestCase(BaseTestCase):
         # Get the password input
         password = self.driver.find_element_by_id('id_password')
         # Type password
-        password.send_keys('admin')
+        password.send_keys('1234')
         # Submit the form
         password.submit()
         # Load page
