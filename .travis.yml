@@ -5,7 +5,7 @@ python:
 
 env:
   global:
-    - ARTIFACTS_AWS_REGION=us-east-1
+    - ARTIFACTS_AWS_REGION=us-west-2
     - ARTIFACTS_S3_BUCKET=pebb
     - secure: UIyjB2AJg8885XQae7tCrT0A0thWTkoc8Vm4z0W4BWiaMop7LirrJzOcrC5Q6MWqpEIJi1TJxgvVgwLetRKIWDKt8ji6Tnmk9qinu6qB/iuIfkQkrMo1SQym7dgxlMR7PIRJMRj05CtKBh6JQHczESOJ8DqIFG0I9HfC+cgSByI=
     - secure: gVceb9+vPqq9OC554THUWkMhWMNyru0LZCj05pt1c55ftxve7UNrflPbCtIbAhUFXgnQsANgNGd6H9//OLcLunO6tgRTkYa0g/CWlq7102CSUomCckDsUTZpLQc55+NKIrZlOR+k/U9erP14NCC2RytVKnvB9CSe0giFSe9+lD4=
