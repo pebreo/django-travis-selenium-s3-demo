@@ -9,7 +9,7 @@ env:
   - secure: EndWvkmAoxriXynznw1EuBCdpvMysLkig8nJ0tnch1bg+snSIvuBJCrzBUHjlrALS2ir9OLEcQp765EGKSd/AhRTk88r7cd77oHPgkkphz+lfkXIQaWmMF3qwLusDCEy1FhOqFl2gCpN7DGSOeoaJYReqs+uXORvBxdd0Wm/J60=
 install: 
 before_script:
-- echo foobar > foobar.txt
+- echo foobar again > foobar.txt
 script: cat foobar.txt
 after_success:
 - travis-artifacts upload --path foobar.txt
