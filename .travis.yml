@@ -32,5 +32,6 @@ script: python manage.py test polls --liveserver=localhost:8081
 #  - travis-artifacts upload --path hello.txt --target-path .
 
 after_success:
-  - travis-artifacts upload --path *.png --target-path test
+#  - travis-artifacts upload --path *.png --target-path test
+  - travis-artifacts upload --path *.png 
   - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
