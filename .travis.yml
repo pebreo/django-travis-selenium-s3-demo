@@ -5,7 +5,7 @@ python:
 
 env:
   global:
-    - ARTIFACTS_AWS_REGION=us-west-2
+    - ARTIFACTS_AWS_REGION=us-east-1
     - ARTIFACTS_S3_BUCKET=pebb
     - secure: LpEqFC4cvF6JDlQBFdQXheuh/naLrslIO/3h6Q3I799klpYkOYiIgFaXCZxS+eoFYHuPqOXd9lnROy2NCKYtFFnLFx/xD7canDFp538kKzUSUKnn6XV7BhsjdEWXKMuJ4Gpa4G01YqSms9WZqvvEbdXdbiFNbcssdIupd8mr4OU=
     - secure: jIWZiC1OLMqr7vXdAyktYmfS0XYH73CgziVGak+ywXv+kYb5Gwe3YkxDe6bq/lbCHSKYnFtCZS9mUetEyzhnSnSfltiTROrCwXRJ8FYEAXI06dDS5mP1KgapStAZS/fUPM1uG1JcebKESW69147bUYbHoBzh3k4HwivwzVIRnvM=
@@ -20,14 +20,14 @@ install:
 before_script:
 # - psql -c 'create database mysitedb;' -U postgres
   - gem install travis-artifacts
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  #- "export DISPLAY=:99.0"
+  #- "sh -e /etc/init.d/xvfb start"
   - echo foo > foo.txt
-  - python manage.py runserver &
+  #- python manage.py runserver &
   
 # command to run tests
-script: python manage.py test polls --liveserver=localhost:8081
-
+#script: python manage.py test polls --liveserver=localhost:8081
+script: cat foo.txt
 #after_script:
 #  - travis-artifacts upload --path hello.txt --target-path .
 
