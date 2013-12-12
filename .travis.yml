@@ -7,6 +7,8 @@ env:
   matrix:
     - DB=sqlite DJANGO_VERSION=1.5.5
   global:
+    - ARTIFACTS_AWS_REGION=us-east-1
+    - ARTIFACTS_S3_BUCKET=pebb
     - secure: ATu5JOUhlqNfh8lyNQDw5RRWG2zP+lHLGJrD6dITVlhy/FMahiV8pmwa0jfx0ZPuSBNR9kC0iAsya8TQOoyjsJSLAIJNhQiCoaLaAKgKvMAPRj+0Uu4QGU8Wb6c+m+vFslZV3vDXZmnMUQLoTBcHp1CZyScvWcURINHwCn8DzEc=
     - secure: EndWvkmAoxriXynznw1EuBCdpvMysLkig8nJ0tnch1bg+snSIvuBJCrzBUHjlrALS2ir9OLEcQp765EGKSd/AhRTk88r7cd77oHPgkkphz+lfkXIQaWmMF3qwLusDCEy1FhOqFl2gCpN7DGSOeoaJYReqs+uXORvBxdd0Wm/J60=
 
@@ -22,5 +24,5 @@ before_script:
 script: python manage.py test polls --liveserver=localhost:8081
 
 after_success:
-  - travis-artifacts upload --path vote-result.png
+  - travis-artifacts upload --path *.png
   - echo https://s3.amazonaws.com/pebb/artifacts/${TRAVIS_BUILD_NUMBER}/${TRAVIS_JOB_NUMBER}
