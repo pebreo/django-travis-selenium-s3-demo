@@ -35,7 +35,7 @@ class PollsTestCase(BaseTestCase):
     def test_vote(self):
         # Open the polls page
         self.driver.get('http://localhost:8000/polls/')
-        # Get the link to the poll "How is selenose?"
+        # Get the link to the poll "How are you?"
         self.driver.save_screenshot('vote-page.png')
         poll = self.driver.find_element_by_link_text('How are you?')
         # Click on the link
@@ -44,7 +44,7 @@ class PollsTestCase(BaseTestCase):
         time.sleep(2)
         # Get the available choices
         choices = self.driver.find_elements_by_name('choice')
-        # Check that only two choices: "Cool" and "Super cool"
+        # Check that only two choices: "Fine." and "I'm great!"
         self.assertEquals(2, len(choices))
         # Select "Super cool"
         choices[1].click()
@@ -57,7 +57,7 @@ class PollsTestCase(BaseTestCase):
         self.assertEquals(2, len(lis))
         # Check that "Cool" has no votes
         self.assertEquals('Fine. -- 0 votes', lis[0].text)
-        # Check that our vote for "Super cool" was well stored
+        # Check that our vote for "I'm great!" was well stored
         self.assertEquals("I'm great! -- 1 vote", lis[1].text)
 
 class AdminTestCase(BaseTestCase):
