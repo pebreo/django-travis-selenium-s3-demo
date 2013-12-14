@@ -2,6 +2,7 @@
 import time
 from django.test import LiveServerTestCase
 from django.conf import settings
+from django.utils.unittest import skip, skipIf
 #from splinter import Browser
 from selenium import webdriver
 
@@ -19,7 +20,7 @@ from selenium import webdriver
 
 
 class BaseTestCase(LiveServerTestCase):
-
+    
     @classmethod
     def setUpClass(cls):
         cls.driver = webdriver.Firefox()
