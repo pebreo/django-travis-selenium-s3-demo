@@ -31,6 +31,7 @@ class BaseTestCase(LiveServerTestCase):
         cls.driver.quit()
 
 class PollsTestCase(BaseTestCase):
+    fixtures = ['initial_data.json']
     
     def test_vote(self):
         # Open the polls page
